@@ -33,7 +33,7 @@ const ScheduleCard = ({ schedule }) => {
         <span style={labelStyle}>Last Modification Date:</span>{" "}
         {schedule.LastModificationDate}
       </div>
-      <div>
+      {/* <div>
         <span style={labelStyle}>ScheduleExpression:</span>{" "}
         {schedule.ScheduleExpression}
       </div>
@@ -43,7 +43,7 @@ const ScheduleCard = ({ schedule }) => {
       <div>
         <span style={labelStyle}>Retry Policy:</span>{" "}
         {JSON.stringify(schedule.RetryPolicy)}
-      </div>
+      </div> */}
     </div>
   );
 };

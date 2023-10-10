@@ -1,24 +1,51 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function FormComponent() {
   const [formData, setFormData] = useState({
     email: "",
     message: "",
     dateTime: "",
+    event: "test_event25",
+    purpose: "register",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
+      formData,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can add your submit logic here, such as sending the data to a server or displaying it in an alert.
-    console.log("Form data:", formData);
+
+    try {
+      const apiUrl = "http://localhost:5002/test";
+
+      const updatedFormData = {
+        email: formData.email,
+        message: formData.message,
+        time: formData.dateTime,
+        event: formData.email.split("@")[0],
+        purpose: formData.purpose,
+      };
+
+      console.log(updatedFormData);
+      await axios.post(apiUrl, updatedFormData);
+
+      console.log("Form data sent successfully!");
+      window.location.reload();
+      setFormData({
+        email: "",
+        message: "",
+        dateTime: "",
+      });
+    } catch (error) {
+      console.error("Error sending form data:", error);
+    }
   };
 
   return (
@@ -32,7 +59,11 @@ function FormComponent() {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", border: "1px solid #ccc" }}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ccc",
+            }}
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
@@ -43,7 +74,11 @@ function FormComponent() {
             onChange={handleChange}
             rows="4"
             required
-            style={{ width: "100%", padding: "8px", border: "1px solid #ccc" }}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ccc",
+            }}
           ></textarea>
         </div>
         <div style={{ marginBottom: "15px" }}>
@@ -54,11 +89,26 @@ function FormComponent() {
             value={formData.dateTime}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "8px", border: "1px solid #ccc" }}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ccc",
+            }}
           />
         </div>
         <div>
-          <button type="submit" style={{ padding: "10px 20px", background: "#007bff", color: "#fff", border: "none", cursor: "pointer" }}>Submit</button>
+          <button
+            type="submit"
+            style={{
+              padding: "10px 20px",
+              background: "#007bff",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>

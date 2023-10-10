@@ -1,5 +1,20 @@
 .container {
     display: flex;
-    flex-direction: rows;
-    justify-content: space-between;
-}
+    align-items: flex-start;
+  }
+  
+  .left {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .vertical-line {
+    border-left: 1px solid #ccc; /* Adjust the style and color as needed */
+    height: 100%;
+  }
+  
+  .right {
+    flex: 1;
+    padding: 20px;
+  }
+  
